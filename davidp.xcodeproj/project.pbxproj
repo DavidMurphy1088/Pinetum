@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B70EE3829825FFC00F7FD36 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B70EE3729825FFC00F7FD36 /* LocationManager.swift */; };
 		7BA33A08297F2729001B0DAC /* PinetumApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA33A07297F2729001B0DAC /* PinetumApp.swift */; };
 		7BA33A0A297F2729001B0DAC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA33A09297F2729001B0DAC /* ContentView.swift */; };
 		7BA33A0C297F272B001B0DAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA33A0B297F272B001B0DAC /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B70EE3729825FFC00F7FD36 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7BA33A04297F2729001B0DAC /* Pinetum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pinetum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA33A07297F2729001B0DAC /* PinetumApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinetumApp.swift; sourceTree = "<group>"; };
 		7BA33A09297F2729001B0DAC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			children = (
 				7BA33A07297F2729001B0DAC /* PinetumApp.swift */,
 				7BA33A09297F2729001B0DAC /* ContentView.swift */,
+				7B70EE3729825FFC00F7FD36 /* LocationManager.swift */,
 				7BA33A0B297F272B001B0DAC /* Assets.xcassets */,
 				7BA33A10297F272B001B0DAC /* Persistence.swift */,
 				7BA33A12297F272B001B0DAC /* Pinetum.xcdatamodeld */,
@@ -108,7 +111,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7BA339FF297F2729001B0DAC /* Build configuration list for PBXProject "Pinetum" */;
+			buildConfigurationList = 7BA339FF297F2729001B0DAC /* Build configuration list for PBXProject "davidp" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -145,6 +148,7 @@
 			files = (
 				7BA33A11297F272B001B0DAC /* Persistence.swift in Sources */,
 				7BA33A0A297F2729001B0DAC /* ContentView.swift in Sources */,
+				7B70EE3829825FFC00F7FD36 /* LocationManager.swift in Sources */,
 				7BA33A14297F272B001B0DAC /* Pinetum.xcdatamodeld in Sources */,
 				7BA33A08297F2729001B0DAC /* PinetumApp.swift in Sources */,
 			);
@@ -328,7 +332,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7BA339FF297F2729001B0DAC /* Build configuration list for PBXProject "Pinetum" */ = {
+		7BA339FF297F2729001B0DAC /* Build configuration list for PBXProject "davidp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7BA33A15297F272B001B0DAC /* Debug */,
