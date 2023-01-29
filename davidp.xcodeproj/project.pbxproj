@@ -14,6 +14,7 @@
 		7BA33A0F297F272B001B0DAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA33A0E297F272B001B0DAC /* Preview Assets.xcassets */; };
 		7BA33A11297F272B001B0DAC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA33A10297F272B001B0DAC /* Persistence.swift */; };
 		7BA33A14297F272B001B0DAC /* Pinetum.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7BA33A12297F272B001B0DAC /* Pinetum.xcdatamodeld */; };
+		7BFC67F8298620F100794638 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFC67F7298620F100794638 /* DistanceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		7BA33A0E297F272B001B0DAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7BA33A10297F272B001B0DAC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		7BA33A13297F272B001B0DAC /* Pinetum.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pinetum.xcdatamodel; sourceTree = "<group>"; };
+		7BFC67F7298620F100794638 /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				7BA33A10297F272B001B0DAC /* Persistence.swift */,
 				7BA33A12297F272B001B0DAC /* Pinetum.xcdatamodeld */,
 				7BA33A0D297F272B001B0DAC /* Preview Content */,
+				7BFC67F7298620F100794638 /* DistanceView.swift */,
 			);
 			path = Pinetum;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BA33A11297F272B001B0DAC /* Persistence.swift in Sources */,
+				7BFC67F8298620F100794638 /* DistanceView.swift in Sources */,
 				7BA33A0A297F2729001B0DAC /* ContentView.swift in Sources */,
 				7B70EE3829825FFC00F7FD36 /* LocationManager.swift in Sources */,
 				7BA33A14297F272B001B0DAC /* Pinetum.xcdatamodeld in Sources */,

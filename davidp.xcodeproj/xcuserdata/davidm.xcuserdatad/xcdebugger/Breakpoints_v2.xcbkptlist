@@ -14,25 +14,89 @@
             filePath = "Pinetum/LocationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "locationManager(_:didFailWithError:)"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "LocationManager"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E6FDDF9-7372-4CB9-B5E0-EABE6AE0B413"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pinetum/LocationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "init(name:lat:lng:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "376BD201-E087-4815-8905-F88AC3CD441B"
+            uuid = "303B75DF-F711-4D9E-82A7-2EB60624E91F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pinetum/ContentView.swift"
+            filePath = "Pinetum/LocationManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "dist()"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "saveLocation(rec:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "303B75DF-F711-4D9E-82A7-2EB60624E91F - 8900e2b647ff4aec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in Pinetum.LocationManager.saveLocation(rec: Pinetum.LocationRecord) -&gt; ()"
+                  moduleName = "Pinetum"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/davidm/Projects/Pinetum/Pinetum/Pinetum/LocationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "303B75DF-F711-4D9E-82A7-2EB60624E91F - cbbf2afef6de139b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Pinetum.LocationRecord, Pinetum.LocationRecord) -&gt; Swift.Bool in closure #1 @Swift.MainActor () -&gt; () in Pinetum.LocationManager.saveLocation(rec: Pinetum.LocationRecord) -&gt; ()"
+                  moduleName = "Pinetum"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/davidm/Projects/Pinetum/Pinetum/Pinetum/LocationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0D0373F3-4238-49FD-95E9-265A2BD2E8E2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pinetum/LocationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "saveLocation(rec:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
