@@ -99,6 +99,8 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
         DispatchQueue.main.async { [self] in
             self.lastLocation = self.currentLocation
             self.currentLocation = location.coordinate
+            //self.currentLocation?.latitude = -41.0
+            //self.currentLocation?.longitude = 174.0
 
             self.cnt += 1
             var dist = -1.0
@@ -108,25 +110,20 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
                                              endLat: cur.latitude, endLng: cur.longitude)
                 }
             }
-            self.setStatus("Updated Location, count:\(cnt) dist:" + String(format: "%.4f",dist))
+            self.setStatus("Updated location, count:\(cnt) delta:" + String(format: "%.4f",dist))
+        }
+    }
+    
+    public func persistLocations() {
+        if let encoded = try? JSONEncoder().encode(self.locations) {
+            UserDefaults.standard.set(encoded, forKey: "GPSData")
         }
     }
     
     func saveLocation(rec: LocationRecord) {
         DispatchQueue.main.async {
-        self.locations.append(rec)
-        if let encoded = try? JSONEncoder().encode(self.locations) {
-            UserDefaults.standard.set(encoded, forKey: "GPSData")
-        }
-        
-//            self.locationsDisplay = self.locations.sorted {
-//                if $0.name > $1.name {
-//                    return true
-//                }
-//                else {
-//                    return $0.datetime > $1.datetime
-//                }
-//            }
+            self.locations.append(rec)
+            self.persistLocations()
             self.setStatus("saved length \(self.locations.count)")
         }
         self.currentLocation = nil
@@ -145,7 +142,6 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
         self.locations.removeAll()
         UserDefaults.standard.removeObject(forKey: "GPSData")
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         setStatus(error.localizedDescription)

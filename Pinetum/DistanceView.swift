@@ -7,6 +7,7 @@ import CoreLocation
 import UIKit
 
 struct DistancesView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @ObservedObject var locationManager = LocationManager.shared
     @State private var isPresentingConfirm = false
     
@@ -17,9 +18,9 @@ struct DistancesView: View {
         formatter.dateFormat = "MMM-dd HH:mm"
         let dateString = formatter.string(from: now)
 
-        var ret = rec.name + "\t\t" + dateString +
-        "\nlat:" + String(format: "%.5f", rec.latitude) +
-        " lng:" + String(format: "%.5f", rec.longitude)
+        var ret = rec.name + "\t\t" + dateString 
+        //"\nlat:" + String(format: "%.5f", rec.latitude) +
+        //" lng:" + String(format: "%.5f", rec.longitude)
         if let loc = locationManager.currentLocation {
             ret += " dist:" + String(format: "%.1f",
                                      locationManager.distance(startLat:rec.latitude, startLng:rec.longitude,
@@ -29,29 +30,43 @@ struct DistancesView: View {
         return ret
     }
     
+    func delete(at offsets: IndexSet) {
+        locationManager.locations.remove(atOffsets: offsets)
+    }
+    
     var body: some View {
         VStack {
             Text("Distances")
-//            List(locationManager.locationsDisplay, id: \.self.datetime) {
-//                Text(locLine(rec: $0))//.font(.footnote)
-////                ForEach(locationManager.locations, id: \.id) { result in
-////                    Text("Result: \(result.name)")
-////                }
-//            }
-            List {
-                ForEach(locationManager.locations.sorted(), id: \.self) { loc in
-                    Text(locLine(rec: loc))
-
+            Text(locationManager.status)
+            NavigationStack {
+                Text("Swipe row left to delete").foregroundColor(.gray)
+                List {
+                    ForEach(locationManager.locations.sorted(), id: \.self) { loc in
+                        NavigationLink(value: loc, label: {
+                        Text(locLine(rec: loc)).font(.system(size: 18))
+                                .font(.subheadline.weight(.medium))
+                        })
+                    }
+                    .onDelete(perform: delete)
                 }
+                .navigationDestination(for: LocationRecord.self, destination: { loc in
+                    LocationView(locationRecord: loc)
+                            })
+                .navigationTitle(Text("Locations"))
             }
-                    
+
             Button("Clear List", role: .destructive) {
                   isPresentingConfirm = true
             }
            .confirmationDialog("Are you sure?",
                 isPresented: $isPresentingConfirm) {
-                Button("Delete all items?", role: .destructive) {
+                Button("Delete all locations?", role: .destructive) {
                     locationManager.clearList()
+                }
+            }
+            .onChange(of: scenePhase) { phase in
+                if phase != .active {
+                    locationManager.persistLocations()
                 }
             }
         }

@@ -42,6 +42,7 @@ struct GPSReadView: View {
                 VStack {
                     VStack(alignment: .center) {
                         Text("Save Location").font(.title3)
+                        Text("\n"+locationManager.status+"\n")
                         TextField("location", text: $locationName)
                             .textFieldStyle(.roundedBorder)
                             .multilineTextAlignment(.center)
@@ -54,10 +55,50 @@ struct GPSReadView: View {
                         Spacer()
                         Button("Save") {
                             if let l = locationManager.currentLocation {
-                                let rec = LocationRecord(name: locationName,
-                                                         lat: l.latitude + 0.00000,
-                                                         lng: l.longitude)
+                                var rec = LocationRecord(name: locationName,
+                                                         lat: l.latitude - 0.00000,
+                                                         lng: l.longitude -  0.0)
                                 self.locationManager.saveLocation(rec: rec)
+                                
+                                if false {
+                                    // home -41.0     174.0
+                                    rec = LocationRecord(name: "South",
+                                                         lat: -41.1,
+                                                         lng: 174.0)
+                                    
+                                    self.locationManager.saveLocation(rec: rec)
+                                    rec = LocationRecord(name: "East",
+                                                         lat: -41.0,
+                                                         lng: 174.1)
+                                    self.locationManager.saveLocation(rec: rec)
+                                    rec = LocationRecord(name: "West",
+                                                         lat: -41.0,
+                                                         lng: 173.9)
+                                    self.locationManager.saveLocation(rec: rec)
+                                    rec = LocationRecord(name: "North",
+                                                         lat: -39.9,
+                                                         lng: 174.0)
+                                    self.locationManager.saveLocation(rec: rec)
+                                    
+                                    rec = LocationRecord(name: "NE",
+                                                         lat: -39.9,
+                                                         lng: 174.1)
+                                    self.locationManager.saveLocation(rec: rec)
+                                    rec = LocationRecord(name: "NW",
+                                                         lat: -39.9,
+                                                         lng: 173.9)
+                                    self.locationManager.saveLocation(rec: rec)
+                                    
+                                    rec = LocationRecord(name: "SE",
+                                                         lat: -41.1,
+                                                         lng: 174.1)
+                                    self.locationManager.saveLocation(rec: rec)
+                                    
+                                    rec = LocationRecord(name: "SW",
+                                                         lat: -41.1,
+                                                         lng: 173.9)
+                                    self.locationManager.saveLocation(rec: rec)
+                                }
                             }
                             savePopup = false
                         }

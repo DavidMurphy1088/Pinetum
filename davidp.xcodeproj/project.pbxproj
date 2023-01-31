@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B442F7029878B5F002C583F /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B442F6F29878B5F002C583F /* LocationView.swift */; };
 		7B70EE3829825FFC00F7FD36 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B70EE3729825FFC00F7FD36 /* LocationManager.swift */; };
 		7BA33A08297F2729001B0DAC /* PinetumApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA33A07297F2729001B0DAC /* PinetumApp.swift */; };
 		7BA33A0A297F2729001B0DAC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA33A09297F2729001B0DAC /* ContentView.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B442F6F29878B5F002C583F /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		7B70EE3729825FFC00F7FD36 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7BA33A04297F2729001B0DAC /* Pinetum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pinetum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA33A07297F2729001B0DAC /* PinetumApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinetumApp.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				7BA33A12297F272B001B0DAC /* Pinetum.xcdatamodeld */,
 				7BA33A0D297F272B001B0DAC /* Preview Content */,
 				7BFC67F7298620F100794638 /* DistanceView.swift */,
+				7B442F6F29878B5F002C583F /* LocationView.swift */,
 			);
 			path = Pinetum;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				7BFC67F8298620F100794638 /* DistanceView.swift in Sources */,
 				7BA33A0A297F2729001B0DAC /* ContentView.swift in Sources */,
 				7B70EE3829825FFC00F7FD36 /* LocationManager.swift in Sources */,
+				7B442F7029878B5F002C583F /* LocationView.swift in Sources */,
 				7BA33A14297F272B001B0DAC /* Pinetum.xcdatamodeld in Sources */,
 				7BA33A08297F2729001B0DAC /* PinetumApp.swift in Sources */,
 			);
@@ -291,6 +295,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,6 +325,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

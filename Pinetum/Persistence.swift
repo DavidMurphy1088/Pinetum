@@ -1,10 +1,3 @@
-//
-//  Persistence.swift
-//  Pinetum
-//
-//  Created by David Murphy on 1/24/23.
-//
-
 import CoreData
 
 struct PersistenceController {
