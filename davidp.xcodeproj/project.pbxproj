@@ -15,10 +15,12 @@
 		7BA33A0F297F272B001B0DAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BA33A0E297F272B001B0DAC /* Preview Assets.xcassets */; };
 		7BA33A11297F272B001B0DAC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA33A10297F272B001B0DAC /* Persistence.swift */; };
 		7BA33A14297F272B001B0DAC /* Pinetum.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7BA33A12297F272B001B0DAC /* Pinetum.xcdatamodeld */; };
-		7BFC67F8298620F100794638 /* DistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFC67F7298620F100794638 /* DistanceView.swift */; };
+		7BFC67F8298620F100794638 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFC67F7298620F100794638 /* LocationsView.swift */; };
+		8CAE9BDA03E387E34CF96797 /* Pods_Pinetum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 482A758D9DCC5388E83C4400 /* Pods_Pinetum.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		482A758D9DCC5388E83C4400 /* Pods_Pinetum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pinetum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B442F6F29878B5F002C583F /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		7B70EE3729825FFC00F7FD36 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7BA33A04297F2729001B0DAC /* Pinetum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pinetum.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,7 +30,9 @@
 		7BA33A0E297F272B001B0DAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7BA33A10297F272B001B0DAC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		7BA33A13297F272B001B0DAC /* Pinetum.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pinetum.xcdatamodel; sourceTree = "<group>"; };
-		7BFC67F7298620F100794638 /* DistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceView.swift; sourceTree = "<group>"; };
+		7BFC67F7298620F100794638 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
+		9374FE2E01AB6C4114A258AA /* Pods-Pinetum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinetum.release.xcconfig"; path = "Target Support Files/Pods-Pinetum/Pods-Pinetum.release.xcconfig"; sourceTree = "<group>"; };
+		9406D24F7D991258FF2E006B /* Pods-Pinetum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pinetum.debug.xcconfig"; path = "Target Support Files/Pods-Pinetum/Pods-Pinetum.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,17 +40,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CAE9BDA03E387E34CF96797 /* Pods_Pinetum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0809588073051C2581938D6F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				482A758D9DCC5388E83C4400 /* Pods_Pinetum.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7BA339FB297F2729001B0DAC = {
 			isa = PBXGroup;
 			children = (
 				7BA33A06297F2729001B0DAC /* Pinetum */,
 				7BA33A05297F2729001B0DAC /* Products */,
+				B3755D50BBF2F693852A7193 /* Pods */,
+				0809588073051C2581938D6F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,7 +83,7 @@
 				7BA33A10297F272B001B0DAC /* Persistence.swift */,
 				7BA33A12297F272B001B0DAC /* Pinetum.xcdatamodeld */,
 				7BA33A0D297F272B001B0DAC /* Preview Content */,
-				7BFC67F7298620F100794638 /* DistanceView.swift */,
+				7BFC67F7298620F100794638 /* LocationsView.swift */,
 				7B442F6F29878B5F002C583F /* LocationView.swift */,
 			);
 			path = Pinetum;
@@ -82,6 +97,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B3755D50BBF2F693852A7193 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9406D24F7D991258FF2E006B /* Pods-Pinetum.debug.xcconfig */,
+				9374FE2E01AB6C4114A258AA /* Pods-Pinetum.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +114,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7BA33A17297F272B001B0DAC /* Build configuration list for PBXNativeTarget "Pinetum" */;
 			buildPhases = (
+				D7CCDB0BB444E0FE7A1FC578 /* [CP] Check Pods Manifest.lock */,
 				7BA33A00297F2729001B0DAC /* Sources */,
 				7BA33A01297F2729001B0DAC /* Frameworks */,
 				7BA33A02297F2729001B0DAC /* Resources */,
+				31B657A590E38ADC46BBCAB8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -147,13 +174,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		31B657A590E38ADC46BBCAB8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pinetum/Pods-Pinetum-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Pinetum/Pods-Pinetum-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Pinetum/Pods-Pinetum-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7CCDB0BB444E0FE7A1FC578 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pinetum-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7BA33A00297F2729001B0DAC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7BA33A11297F272B001B0DAC /* Persistence.swift in Sources */,
-				7BFC67F8298620F100794638 /* DistanceView.swift in Sources */,
+				7BFC67F8298620F100794638 /* LocationsView.swift in Sources */,
 				7BA33A0A297F2729001B0DAC /* ContentView.swift in Sources */,
 				7B70EE3829825FFC00F7FD36 /* LocationManager.swift in Sources */,
 				7B442F7029878B5F002C583F /* LocationView.swift in Sources */,
@@ -281,6 +350,7 @@
 		};
 		7BA33A18297F272B001B0DAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9406D24F7D991258FF2E006B /* Pods-Pinetum.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -311,6 +381,7 @@
 		};
 		7BA33A19297F272B001B0DAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9374FE2E01AB6C4114A258AA /* Pods-Pinetum.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

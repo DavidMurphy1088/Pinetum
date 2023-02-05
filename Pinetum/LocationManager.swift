@@ -1,12 +1,38 @@
 import Foundation
 import CoreLocation
 import MapKit
+import GoogleSignIn
+import GoogleSignInSwift
 
-class LocationRecord: Codable, Hashable, Comparable {
-    var name = ""
-    var latitude:Double = 0
-    var longitude:Double = 0
-    var datetime:TimeInterval = 0
+class RevisitRecord : Codable, Hashable {
+    //:Encodable, Hashable, Comparable, ObservableObject {
+    var datetime:TimeInterval
+    var distanceFromOriginalLocation:Double = 0
+    
+    init() {
+        self.datetime = Date().timeIntervalSince1970
+    }
+    
+    static func == (lhs: RevisitRecord, rhs: RevisitRecord) -> Bool {
+        return lhs.datetime < rhs.datetime
+    }
+    
+    static func < (lhs: RevisitRecord, rhs: RevisitRecord) -> Bool {
+        return lhs.datetime < rhs.datetime
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(String(self.datetime))
+    }
+}
+
+class LocationRecord : NSObject, Codable, Comparable, ObservableObject { //NSObject, Encodable, Decodable, Comparable, ObservableObject {
+    //@Published
+    public var revisits : [RevisitRecord] = []
+    var name:String
+    var latitude:Double
+    var longitude:Double
+    var datetime:TimeInterval
     
     init(name: String, lat: Double, lng: Double) {
         self.name = name
@@ -14,13 +40,24 @@ class LocationRecord: Codable, Hashable, Comparable {
         self.longitude = lng
         self.datetime = Date().timeIntervalSince1970
     }
+//
+//    func encode(to encoder: Encoder) throws {
+//       var container = encoder.container(keyedBy: CodingKeys.self)
+//       try container.encode(self.name, forKey: .name)
+//    }
 
+    
+//    enum CodingKeys: String, CodingKey {
+//        case name, latitude, longitude, datetime, revisits
+//    }
+//
     required init(from decoder:Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: .name)
         latitude = try values.decode(Double.self, forKey: .latitude)
         longitude = try values.decode(Double.self, forKey: .longitude)
         datetime = try values.decode(TimeInterval.self, forKey: .datetime)
+        revisits = try values.decode([RevisitRecord].self, forKey: .revisits)
     }
         
     static func < (lhs: LocationRecord, rhs: LocationRecord) -> Bool {
@@ -35,9 +72,10 @@ class LocationRecord: Codable, Hashable, Comparable {
     static func == (lhs: LocationRecord, rhs: LocationRecord) -> Bool {
         return lhs.name == rhs.name && lhs.datetime == rhs.datetime
     }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name + String(self.datetime))
+    
+    func addRevisit(rec:RevisitRecord) {
+        self.revisits.append(rec)
+        print("added reviist", self.revisits.count)
     }
 }
 
@@ -45,15 +83,23 @@ extension LocationRecord: Identifiable {
   var id: Double { datetime }
 }
 
+class LocationStatus : ObservableObject {
+    var lastStableLocation:CLLocationCoordinate2D?
+    var message:String?
+}
+
 final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published public var locations : [LocationRecord] = []
     @Published var currentLocation: CLLocationCoordinate2D?
-    @Published public var status: String = ""
+    @Published var currentHeading: CLLocationDirection?
+    @Published public var status: LocationStatus = LocationStatus()
+    @Published public var lastStableLocation: CLLocationCoordinate2D?
 
     static public let shared = LocationManager()
     private let locationManager = CLLocationManager()
-    private var cnt = 0
+    private var locationReadCount = 0
     private var lastLocation: CLLocationCoordinate2D?
+    private var lastStableLocCounter:Int = 0
     
     override init() {
         super.init()
@@ -65,58 +111,130 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
         case .reducedAccuracy:
             print("Reduced Accuracy")
         @unknown default:
-            print("Unknown Precise Location...")
+            print("Unknown Precise Location")
         }
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locations = []
         if let data = UserDefaults.standard.data(forKey: "GPSData") {
             if let decoded = try? JSONDecoder().decode([LocationRecord].self, from: data) {
                 locations = decoded
+                for loc in self.locations {
+                    print(" revisit", loc.name, loc.revisits.count)
+                }
+            }
+            else {
+                setStatus("ERROR:Cant load locations")
             }
         }
 //        self.distanceFilter = CLLocationDistance()
-//        self.pausesLocationUpdatesAutomatically = false
+//        self.pausesLocationingtesAutomatically = false
 //        self.allowsBackgroundLocationUpdates
         
         setStatus("Loaded locations, length \(self.locations.count)")
+        print("===>locaed locations 1", self.locations.count)
     }
     
-    func setStatus(_ msg: String) {
+    public func googleAPI() {
+        var handled: Bool
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error != nil || user == nil {
+                print(error!.localizedDescription)
+            } else {
+              // Show the app's signed-in state.
+            }
+          }
+//          handled = GIDSignIn.sharedInstance.handle(url)
+//          if handled {
+//            return true
+//          }
+//        let driveScope = "https://www.googleapis.com/auth/drive.readonly"
+//        let grantedScopes = user.grantedScopes
+//        if grantedScopes == nil || !grantedScopes!.contains(driveScope) {
+//          // Request additional Drive scope.
+//        }
+    }
+    
+    public func persistLocations() {
+        if let encoded = try? JSONEncoder().encode(self.locations) {
+            print("==>presisted count", locations.count)
+            for loc in locations {
+                print(" loc rv cnt", loc.name, loc.revisits.count)
+            }
+            UserDefaults.standard.set(encoded, forKey: "GPSData")
+        }
+    }
+    
+    private func setStatus(_ msg: String) {
         DispatchQueue.main.async {
-            self.status = msg
+            self.status.message = msg
+            if let loc = self.currentLocation {
+                self.status.message! += "\nCurrent:" + String(String(format: "%.4f",loc.latitude) + ", "  + String(String(format: "%.4f",loc.longitude)))
+            }
+//            if let last = self.lastLocation {
+//                self.status.message! += "\nPrevious\t" + String(String(format: "%.4f",last.latitude) + ", " + String(String(format: "%.4f",last.longitude)))
+//            }
         }
     }
     
     func requestLocation() {
         self.setStatus("Requested Continous Locations")
-        self.cnt = 0
+        self.locationReadCount = 0
         locationManager.requestLocation()
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading heading: CLHeading) {
+        DispatchQueue.main.async { [self] in
+            self.currentHeading = heading.magneticHeading
+        }
+    }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        DispatchQueue.main.async { [self] in
-            self.lastLocation = self.currentLocation
-            self.currentLocation = location.coordinate
-            //self.currentLocation?.latitude = -41.0
-            //self.currentLocation?.longitude = 174.0
-
-            self.cnt += 1
-            var dist = -1.0
-            if let last = self.lastLocation {
-                if let cur = self.currentLocation {
-                    dist = self.distance(startLat: last.latitude, startLng: last.longitude,
-                                             endLat: cur.latitude, endLng: cur.longitude)
+        lastLocation = self.currentLocation
+        currentLocation = location.coordinate
+        locationReadCount += 1
+        
+        var delta:Double?
+        if let last = lastLocation {
+            if let cur = currentLocation {
+                delta = distance(startLat: last.latitude, startLng: last.longitude,
+                                         endLat: cur.latitude, endLng: cur.longitude)
+                if delta != nil && delta!.isNaN {
+                    delta = 0
                 }
             }
-            self.setStatus("Updated location, count:\(cnt) delta:" + String(format: "%.4f",dist))
+        }
+        
+        var deltaStr = ""
+        if let delta = delta {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            numberFormatter.maximumFractionDigits = 1
+            deltaStr = numberFormatter.string(from: NSNumber(value: delta)) ?? ""
+            if delta < 1.0 {
+                lastStableLocCounter += 1
+            }
+            else {
+                lastStableLocCounter = 0
+            }
+            if lastStableLocCounter > 5 { //todo
+                lastStableLocation = currentLocation
+            }
+            else {
+               //lastStableLocation = nil
+            }
+        }
+        DispatchQueue.main.async { [self] in
+            self.setStatus("Count:\(self.locationReadCount) Delta:" + (deltaStr) + " Consec:" + String(lastStableLocCounter))
         }
     }
     
-    public func persistLocations() {
-        if let encoded = try? JSONEncoder().encode(self.locations) {
-            UserDefaults.standard.set(encoded, forKey: "GPSData")
+    public func resetLastStableLocation() {
+        DispatchQueue.main.async {
+            self.lastStableLocation = nil
+            self.lastStableLocCounter = 0
         }
     }
     
@@ -125,17 +243,20 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
             self.locations.append(rec)
             self.persistLocations()
             self.setStatus("saved length \(self.locations.count)")
+            print("saved locs", self.locations.count)
         }
         self.currentLocation = nil
-        locationManager.stopUpdatingLocation()
     }
     
     func reset() {
-        self.setStatus("Resetting Location")
-        self.cnt = 0
+        locationReadCount = 0
         locationManager.stopUpdatingLocation()
-        self.currentLocation = nil
-        self.lastLocation = nil
+        locationManager.stopUpdatingHeading()
+        currentLocation = nil
+        lastLocation = nil
+        lastStableLocCounter = 0
+        lastStableLocation = nil
+        self.setStatus("Reset Location Manager")
     }
 
     func clearList() {
@@ -144,7 +265,7 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        setStatus(error.localizedDescription)
+        setStatus("ERROR:"+error.localizedDescription)
     }
     
     func deg2rad(_ number: Double) -> Double {
@@ -185,5 +306,13 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
         r = acos(r)
         return r * 6371 * 1000
     }
-
+    
+    func fmtDatetime(datetime : TimeInterval) -> String {
+        let dt  = Date(timeIntervalSince1970:datetime)
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "MMM-dd HH:mm"
+        let dateString = formatter.string(from: dt)
+        return dateString
+    }
 }
